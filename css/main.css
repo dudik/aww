@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+#app {
+  padding: 3px;
+}
+
+.post {
+  float: left;
+  margin: 3px;
+}
+
+.post img, video {
+  vertical-align: top;
+}
+
+.post video {
+  object-fit: cover;
+}
