@@ -2,15 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Aww</title>
+    <title>aww</title>
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
     <div id="app">
-      <div v-for="post in posts" class="post">
-        <img v-if="post.type == 'image'" :style="{ width: post.nwidth + 'px', height: post.nheight + 'px' }" :src="post.url">
-        <video v-else :style="{ width: post.nwidth + 'px', height: post.nheight + 'px' }" :src="post.url" autoplay loop></video>
+      <div tabindex="0" @keyup.left="active - 1" @keyup.right="active + 1" v-on:click="active = -1" v-if="active > -1" id="show">
+        <span class="helper"></span><img v-if="posts[active].type == 'image'" :src="posts[active].source">
+        <video v-else :src="posts[active].source" autoplay loop></video>
       </div>
+      <div id="posts-container">
+        <div v-on:click="active = index" v-for="(post, index) in posts" class="post">
+          <img v-if="post.type == 'image'" :style="{ width: post.nwidth + 'px', height: post.nheight + 'px' }" :src="post.url">
+          <video v-else :style="{ width: post.nwidth + 'px', height: post.nheight + 'px' }" :src="post.url" autoplay loop></video>
+        </div>
+      </div>
+      <div id="more">&nbsp;</div>
     </div>
     <script src="js/vue.js" charset="utf-8"></script>
     <script src="js/axios.min.js" charset="utf-8"></script>
